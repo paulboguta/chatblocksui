@@ -12,17 +12,18 @@ export const baseOptions: BaseLayoutProps = {
     title: (
       <>
         <svg
-          width="24"
+          aria-hidden="true"
+          aria-label="Chatblocks Logo"
+          aria-labelledby="Chatblocks Logo"
           height="24"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Logo"
         >
-          <circle cx={12} cy={12} r={12} fill="currentColor" />
+          <circle cx={12} cy={12} fill="currentColor" r={12} />
         </svg>
         My App
       </>
     ),
   },
-  // see https://fumadocs.dev/docs/ui/navigation/links
   links: [],
 };
