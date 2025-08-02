@@ -1,21 +1,21 @@
-import { websiteConfig } from '@/website.config'
+import { websiteConfig } from '@/website.config';
 
 interface StructuredDataProps {
-  type?: 'website' | 'documentation' | 'software'
-  title?: string
-  description?: string
-  url?: string
+  type?: 'website' | 'documentation' | 'software';
+  title?: string;
+  description?: string;
+  url?: string;
 }
 
-export function StructuredData({ 
-  type = 'website', 
-  title, 
+export function StructuredData({
+  type = 'website',
+  title,
   description,
-  url 
+  url,
 }: StructuredDataProps) {
-  const baseUrl = websiteConfig.url
-  const pageUrl = url ? `${baseUrl}${url}` : baseUrl
-  
+  const baseUrl = websiteConfig.url;
+  const pageUrl = url ? `${baseUrl}${url}` : baseUrl;
+
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -27,7 +27,7 @@ export function StructuredData({
       name: websiteConfig.name,
       url: baseUrl,
     },
-  }
+  };
 
   const softwareSchema = {
     '@context': 'https://schema.org',
@@ -44,7 +44,7 @@ export function StructuredData({
       '@type': 'Organization',
       name: websiteConfig.name,
     },
-  }
+  };
 
   const documentationSchema = {
     '@context': 'https://schema.org',
@@ -61,18 +61,18 @@ export function StructuredData({
       name: websiteConfig.name,
     },
     dateModified: new Date().toISOString(),
-  }
+  };
 
-  let schema
+  let schema;
   switch (type) {
     case 'software':
-      schema = softwareSchema
-      break
+      schema = softwareSchema;
+      break;
     case 'documentation':
-      schema = documentationSchema
-      break
+      schema = documentationSchema;
+      break;
     default:
-      schema = websiteSchema
+      schema = websiteSchema;
   }
 
   return (
@@ -80,5 +80,5 @@ export function StructuredData({
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
-  )
+  );
 }

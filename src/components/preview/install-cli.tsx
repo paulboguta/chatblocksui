@@ -42,7 +42,7 @@ export function InstallCLI({
   return (
     <div className="relative overflow-x-auto rounded-lg border">
       <Tabs className="gap-0" onValueChange={setActiveTab} value={activeTab}>
-        <div className='flex items-center gap-2 border-border/50 border-b px-3 py-1'>
+        <div className="flex items-center gap-2 border-border/50 border-b px-3 py-1">
           <div className="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70">
             <Terminal className="size-3 text-background" />
           </div>

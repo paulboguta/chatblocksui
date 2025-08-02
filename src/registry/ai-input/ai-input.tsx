@@ -4,7 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 export function AiInput() {
   return (
-    <div className='flex items-end gap-2'>
+    <div className="flex items-end gap-2">
       <Textarea
         className="min-h-[60px] resize-none"
         placeholder="Ask me anything..."

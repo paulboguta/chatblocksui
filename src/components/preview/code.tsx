@@ -29,11 +29,12 @@ export function ComponentPreviewCode({
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
   const theme = useTheme();
   const codeTheme = theme === 'dark' ? 'github-dark' : 'github-light';
-  
+
   // Convert single code string to files array for backwards compatibility
-  const codeFiles: CodeFile[] = typeof files === 'string' 
-    ? [{ filename, code: files, language: 'tsx' }]
-    : files;
+  const codeFiles: CodeFile[] =
+    typeof files === 'string'
+      ? [{ filename, code: files, language: 'tsx' }]
+      : files;
 
   const handleCopy = (filename: string, code: string) => {
     navigator.clipboard.writeText(code);
@@ -46,8 +47,10 @@ export function ComponentPreviewCode({
     return (
       <div className="h-full overflow-auto">
         <CodeBlock className="h-full rounded-none border-0">
-          <CodeBlockGroup className='border-border border-b bg-muted/30 py-2 pr-2 pl-4'>
-            <span className='text-muted-foreground text-xs'>{file.filename}</span>
+          <CodeBlockGroup className="border-border border-b bg-muted/30 py-2 pr-2 pl-4">
+            <span className="text-muted-foreground text-xs">
+              {file.filename}
+            </span>
             <Button
               className="h-8 w-8"
               onClick={() => handleCopy(file.filename, file.code)}
@@ -75,18 +78,29 @@ export function ComponentPreviewCode({
   return (
     <div className="h-full overflow-auto">
       <Tabs className="h-full" defaultValue={codeFiles[0]?.filename}>
-        <TabsList variant="compact" className="w-full rounded-none bg-muted/30 px-4">
+        <TabsList
+          variant="compact"
+          className="w-full rounded-none bg-muted/30 px-4"
+        >
           {codeFiles.map((file) => (
-            <TabsTrigger key={file.filename} value={file.filename} variant="compact">
+            <TabsTrigger
+              key={file.filename}
+              value={file.filename}
+              variant="compact"
+            >
               {file.filename}
             </TabsTrigger>
           ))}
         </TabsList>
         {codeFiles.map((file) => (
-          <TabsContent key={file.filename} value={file.filename} className="h-[calc(100%-40px)]">
+          <TabsContent
+            key={file.filename}
+            value={file.filename}
+            className="h-[calc(100%-40px)]"
+          >
             <CodeBlock className="h-full rounded-none border-0">
-              <CodeBlockGroup className='border-border border-b bg-muted/20 py-2 pr-2 pl-4'>
-                <span className='text-muted-foreground text-xs'>
+              <CodeBlockGroup className="border-border border-b bg-muted/20 py-2 pr-2 pl-4">
+                <span className="text-muted-foreground text-xs">
                   {file.language?.toUpperCase() || 'TSX'}
                 </span>
                 <Button

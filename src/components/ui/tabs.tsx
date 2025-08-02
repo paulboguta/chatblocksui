@@ -18,15 +18,12 @@ function Tabs({
   );
 }
 
-interface TabsListProps extends React.ComponentProps<typeof TabsPrimitive.List> {
+interface TabsListProps
+  extends React.ComponentProps<typeof TabsPrimitive.List> {
   variant?: 'default' | 'compact';
 }
 
-function TabsList({
-  className,
-  variant = 'default',
-  ...props
-}: TabsListProps) {
+function TabsList({ className, variant = 'default', ...props }: TabsListProps) {
   return (
     <TabsPrimitive.List
       className={cn(
@@ -41,7 +38,8 @@ function TabsList({
   );
 }
 
-interface TabsTriggerProps extends React.ComponentProps<typeof TabsPrimitive.Trigger> {
+interface TabsTriggerProps
+  extends React.ComponentProps<typeof TabsPrimitive.Trigger> {
   variant?: 'default' | 'compact';
 }
 

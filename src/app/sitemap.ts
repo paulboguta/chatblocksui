@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${websiteConfig.url}/${page.url}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: page.url === '' ? 0.9 : 0.7, 
+    priority: page.url === '' ? 0.9 : 0.7,
   }));
 
   // Static pages

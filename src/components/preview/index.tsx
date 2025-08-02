@@ -22,9 +22,9 @@ export async function ComponentPreview({
     'utf-8'
   );
 
-  const Component = await import(`../../registry/${name}/${name}-demo.tsx`).then(
-    (mod) => mod.default
-  );
+  const Component = await import(
+    `../../registry/${name}/${name}-demo.tsx`
+  ).then((mod) => mod.default);
 
   const transformedCode = exampleCode.replace(
     /@\/components\//g,

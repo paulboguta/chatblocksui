@@ -2,7 +2,9 @@ import Script from 'next/script';
 import { env } from '@/env';
 
 export function Analytics() {
-  if (env.NODE_ENV === 'development') { return <></>; }
+  if (env.NODE_ENV === 'development') {
+    return <></>;
+  }
 
   return (
     <Script

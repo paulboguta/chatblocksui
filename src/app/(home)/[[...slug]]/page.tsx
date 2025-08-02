@@ -55,7 +55,7 @@ export default async function Page(props: {
         {/* Navigation */}
         <div className="mt-12 flex items-center justify-between border-t pt-8">
           {neighbours.previous ? (
-            <Button asChild className='h-auto px-4 py-2' variant="secondary">
+            <Button asChild className="h-auto px-4 py-2" variant="secondary">
               <Link
                 className="flex items-center gap-2 no-underline"
                 href={neighbours.previous.url}
@@ -71,7 +71,7 @@ export default async function Page(props: {
           )}
 
           {neighbours.next ? (
-            <Button asChild className='h-auto px-4 py-2' variant="secondary">
+            <Button asChild className="h-auto px-4 py-2" variant="secondary">
               <Link
                 className="flex items-center gap-2 no-underline"
                 href={neighbours.next.url}

@@ -31,7 +31,7 @@ export function ComponentInstallation({
 
   return (
     <div className="space-y-4">
-      <h2 className='font-semibold text-2xl'>Installation</h2>
+      <h2 className="font-semibold text-2xl">Installation</h2>
 
       <Tabs defaultValue={showCLI ? 'cli' : 'manual'}>
         <TabsList>
@@ -49,7 +49,10 @@ export function ComponentInstallation({
 
         {showCLI && (
           <TabsContent value="cli">
-            <InstallCLI dependencies={cliDependencies} packageName={packageName} />
+            <InstallCLI
+              dependencies={cliDependencies}
+              packageName={packageName}
+            />
           </TabsContent>
         )}
 

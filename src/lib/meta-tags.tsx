@@ -73,7 +73,7 @@ export function generateMetadata({
       title: pageTitle,
       description: pageDescription,
       images: [pageImage],
-      creator: '@pawelboguta', 
+      creator: '@pawelboguta',
     },
     alternates: {
       canonical: pageUrl,
