@@ -1,7 +1,9 @@
-# ChatBlocks UI Library
+# chatblocks UI Library
+
+**Note: We use lowercase "chatblocks" for all branding and naming conventions.**
 
 ## Project Overview
-ChatBlocks is a UI component library specifically designed for AI chat applications. It extends shadcn/ui components with specialized components for AI interactions like AI inputs, chat interfaces, and related UI elements.
+chatblocks is a UI component library specifically designed for AI chat applications. It extends shadcn/ui components with specialized components for AI interactions like AI inputs, chat interfaces, and related UI elements.
 
 ## Tech Stack
 - **Framework**: Next.js 15 (with Turbo)

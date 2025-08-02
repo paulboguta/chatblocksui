@@ -14,16 +14,19 @@ export const baseOptions: BaseLayoutProps = {
         <svg
           aria-hidden="true"
           aria-label="Chatblocks Logo"
-          aria-labelledby="Chatblocks Logo"
           height="24"
+          viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle cx={12} cy={12} fill="currentColor" r={12} />
+          <rect fill="currentColor" height="6" rx="2" width="8" x="2" y="8" />
+          <rect fill="currentColor" height="6" rx="2" width="8" x="14" y="4" />
+          <rect fill="currentColor" height="6" rx="2" width="8" x="12" y="14" />
         </svg>
-        My App
+        chatblocks
       </>
     ),
   },
   links: [],
+  githubUrl: 'https://github.com/paulboguta/chatblocksui',
 };
