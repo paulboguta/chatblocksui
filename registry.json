@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "chatblocks",
+  "homepage": "https://chatblocks.dev",
+  "items": [
+    {
+      "name": "ai-input",
+      "type": "registry:block",
+      "title": "AI Input",
+      "description": "A simple AI input component.",
+      "files": [
+        {
+          "path": "src/registry/ai-input/ai-input.tsx",
+          "type": "registry:component",
+          "target": "components/ui/ai-input.tsx"
+        },
+        {
+          "path": "src/registry/ai-input/ai-input-demo.tsx",
+          "type": "registry:component",
+          "target": "components/ai-input-demo.tsx"
+        }
+      ]
+    }
+  ]
+}
