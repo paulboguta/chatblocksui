@@ -5,7 +5,7 @@ import { websiteConfig } from '@/website.config';
 export default function sitemap(): MetadataRoute.Sitemap {
   // Get all documentation pages
   const docPages = source.getPages().map((page) => ({
-    url: `${websiteConfig.url}/${page.url}`,
+    url: page.url === '' ? websiteConfig.url : `${websiteConfig.url}/${page.url}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: page.url === '' ? 0.9 : 0.7,
