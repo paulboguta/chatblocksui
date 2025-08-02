@@ -1,0 +1,45 @@
+# chatblocks - AI-Focused UI Components
+
+## Overview
+chatblocks is a collection of AI-focused UI components built on top of shadcn/ui. It provides specialized components for building chat applications, AI interfaces, and conversational experiences.
+
+## Project Information
+- **Name**: chatblocks
+- **Type**: UI Component Library
+- **Framework**: React, Next.js
+- **Base**: shadcn/ui
+- **License**: MIT
+- **Repository**: https://github.com/paulboguta/chatblocks
+
+## Purpose
+This library provides copy-paste components specifically designed for AI applications:
+- Chat input fields with AI-specific features
+- Message bubbles and conversation flows
+- Streaming response indicators
+- Token counters and usage displays
+- Model selection components
+
+## Installation
+Components can be installed via the shadcn CLI:
+```bash
+npx shadcn@latest add https://chatblocks.dev/r/[component-name].json
+```
+
+## Documentation Structure
+- `/docs` - Main documentation
+- `/docs/installation` - Setup instructions
+- `/docs/components` - Individual component documentation
+- `/r/[component].json` - Registry files for CLI installation
+
+## Target Audience
+Developers building AI applications, chat interfaces, and conversational experiences who need specialized UI components that go beyond standard component libraries.
+
+## Key Features
+- Copy & paste approach (no package dependencies)
+- Built on shadcn/ui foundation
+- AI-specific component variants
+- Production-ready components
+- Customizable and extensible
+
+## Current Focus (v0.1)
+Chat components for conversational interfaces. Future versions will expand to support AI agent app builders and workflow tools.

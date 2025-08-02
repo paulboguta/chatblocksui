@@ -3,5 +3,5 @@ export const websiteConfig = {
   description: "UI component library for AI chat applications",
   domain: "chatblocks.dev",
   url: "https://chatblocks.dev",
-  github: "https://github.com/username/chatblocks",
+  github: "https://github.com/paulboguta/chatblocks",
 }
