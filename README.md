@@ -1,8 +1,6 @@
 # chatblocks
 
 <div>
-  <img src="https://img.shields.io/npm/dy/chatblocksui" alt="" />
-  <img src="https://img.shields.io/npm/v/chatblocksui" alt="" />
   <img src="https://img.shields.io/github/license/paulboguta/chatblocksui" alt="" />
 </div>
 
