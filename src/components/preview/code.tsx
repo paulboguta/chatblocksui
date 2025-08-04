@@ -4,8 +4,8 @@ import { Check, Copy } from 'lucide-react';
 import { useState } from 'react';
 import {
   CodeBlock,
-  CodeBlockContent,
-  CodeBlockHeader,
+  CodeBlockCode,
+  CodeBlockGroup,
 } from '@/components/chatblocks/code-block';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -47,7 +47,7 @@ export function ComponentPreviewCode({
     return (
       <div className="h-full overflow-auto">
         <CodeBlock className="h-full rounded-none border-0">
-          <CodeBlockHeader className="py-2 pr-2 pl-4">
+          <CodeBlockGroup className="py-2 pr-2 pl-4">
             <span className="text-muted-foreground text-xs">
               {file.filename}
             </span>
@@ -63,8 +63,8 @@ export function ComponentPreviewCode({
                 <Copy className="h-4 w-4" />
               )}
             </Button>
-          </CodeBlockHeader>
-          <CodeBlockContent
+          </CodeBlockGroup>
+          <CodeBlockCode
             className="min-h-full"
             code={file.code}
             language={file.language || 'tsx'}
@@ -99,7 +99,7 @@ export function ComponentPreviewCode({
             value={file.filename}
           >
             <CodeBlock className="h-full rounded-none border-0">
-              <CodeBlockHeader className="py-2 pr-2 pl-4">
+              <CodeBlockGroup className="py-2 pr-2 pl-4">
                 <span className="text-muted-foreground text-xs">
                   {file.language?.toUpperCase() || 'TSX'}
                 </span>
@@ -115,8 +115,8 @@ export function ComponentPreviewCode({
                     <Copy className="h-4 w-4" />
                   )}
                 </Button>
-              </CodeBlockHeader>
-              <CodeBlockContent
+              </CodeBlockGroup>
+              <CodeBlockCode
                 className="min-h-full"
                 code={file.code}
                 language={file.language || 'tsx'}

@@ -1,13 +1,15 @@
 import { ComponentPreview } from '@/components/preview';
 
 export interface ComponentExampleProps {
-  name: string;
+  primitive: string;
+  example: string;
   display?: 'default' | 'fullscreen';
   className?: string;
 }
 
 export function ComponentExample({
-  name,
+  primitive,
+  example,
   display = 'default',
   className,
 }: ComponentExampleProps) {
@@ -15,7 +17,8 @@ export function ComponentExample({
     <ComponentPreview
       className={className}
       display={display}
-      name={name}
+      example={example}
+      primitive={primitive}
     />
   );
 }
