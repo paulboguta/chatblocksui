@@ -7,28 +7,25 @@ import { ComponentPreviewCode } from './code';
 import { ComponentPreviewDisplay } from './display';
 
 interface ComponentPreviewProps {
-  name: string;
+  primitive: string;
+  example: string;
   className?: string;
   display?: 'default' | 'fullscreen';
 }
 
 export async function ComponentPreview({
-  name,
+  primitive,
+  example,
   className,
   display = 'default',
 }: ComponentPreviewProps) {
-  // Extract component base name and variant (e.g., "ai-input" and "basic" from "ai-input-basic")
-  const parts = name.split('-');
-  const baseComponent = parts.slice(0, 2).join('-'); // "ai-input"
-  const variant = parts.slice(2).join('-') || 'demo'; // "basic" or default to "demo"
-  
-  const fileName = variant === 'demo' ? `${name}.tsx` : `${name}.tsx`;
-  const filePath = join(process.cwd(), 'src', 'registry', baseComponent, fileName);
-  
+  const fileName = `${example}.tsx`;
+  const filePath = join(process.cwd(), 'src', 'registry', primitive, fileName);
+
   const exampleCode = await readFile(filePath, 'utf-8');
 
   const Component = await import(
-    `../../registry/${baseComponent}/${fileName}`
+    `../../registry/${primitive}/${fileName}`
   ).then((mod) => mod.default);
 
   const transformedCode = exampleCode.replace(
@@ -49,11 +46,10 @@ export async function ComponentPreview({
             Code
           </TabsTrigger>
         </TabsList>
-        <TabsContent className="mt-4" value="preview">
-          <div
+        <TabsContent  className="mt-4 size-full" value="preview">
+        <div
             className={cn(
               'overflow-hidden rounded-lg border',
-              display === 'fullscreen' ? 'h-[48rem]' : 'h-[32rem]'
             )}
           >
             <ComponentPreviewDisplay display={display}>
@@ -69,7 +65,7 @@ export async function ComponentPreview({
             )}
           >
             <ComponentPreviewCode
-              filename={`${name}.tsx`}
+              filename={`${example}.tsx`}
               files={transformedCode}
             />
           </div>

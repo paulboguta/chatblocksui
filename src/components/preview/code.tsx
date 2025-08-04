@@ -6,10 +6,9 @@ import {
   CodeBlock,
   CodeBlockCode,
   CodeBlockGroup,
-} from '@/components/preview/code-block';
+} from '@/components/chatblocks/code-block';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useTheme } from '@/lib/use-theme';
 
 interface CodeFile {
   filename: string;
@@ -27,8 +26,6 @@ export function ComponentPreviewCode({
   filename = 'demo.tsx',
 }: ComponentPreviewCodeProps) {
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
-  const theme = useTheme();
-  const codeTheme = theme === 'dark' ? 'github-dark' : 'github-light';
 
   // Convert single code string to files array for backwards compatibility
   const codeFiles: CodeFile[] =
@@ -36,9 +33,9 @@ export function ComponentPreviewCode({
       ? [{ filename, code: files, language: 'tsx' }]
       : files;
 
-  const handleCopy = (filename: string, code: string) => {
+  const handleCopy = (text: string, code: string) => {
     navigator.clipboard.writeText(code);
-    setCopiedFile(filename);
+    setCopiedFile(text);
     setTimeout(() => setCopiedFile(null), 2000);
   };
 
@@ -47,7 +44,7 @@ export function ComponentPreviewCode({
     return (
       <div className="h-full overflow-auto">
         <CodeBlock className="h-full rounded-none border-0">
-          <CodeBlockGroup className="border-border border-b bg-muted/30 py-2 pr-2 pl-4">
+          <CodeBlockGroup className="py-2 pr-2 pl-4">
             <span className="text-muted-foreground text-xs">
               {file.filename}
             </span>
@@ -68,7 +65,6 @@ export function ComponentPreviewCode({
             className="min-h-full"
             code={file.code}
             language={file.language || 'tsx'}
-            theme={codeTheme}
           />
         </CodeBlock>
       </div>
@@ -79,8 +75,8 @@ export function ComponentPreviewCode({
     <div className="h-full overflow-auto">
       <Tabs className="h-full" defaultValue={codeFiles[0]?.filename}>
         <TabsList
-          variant="compact"
           className="w-full rounded-none bg-muted/30 px-4"
+          variant="compact"
         >
           {codeFiles.map((file) => (
             <TabsTrigger
@@ -94,12 +90,12 @@ export function ComponentPreviewCode({
         </TabsList>
         {codeFiles.map((file) => (
           <TabsContent
+            className="h-[calc(100%-40px)]"
             key={file.filename}
             value={file.filename}
-            className="h-[calc(100%-40px)]"
           >
             <CodeBlock className="h-full rounded-none border-0">
-              <CodeBlockGroup className="border-border border-b bg-muted/20 py-2 pr-2 pl-4">
+              <CodeBlockGroup className="py-2 pr-2 pl-4">
                 <span className="text-muted-foreground text-xs">
                   {file.language?.toUpperCase() || 'TSX'}
                 </span>
@@ -120,7 +116,6 @@ export function ComponentPreviewCode({
                 className="min-h-full"
                 code={file.code}
                 language={file.language || 'tsx'}
-                theme={codeTheme}
               />
             </CodeBlock>
           </TabsContent>

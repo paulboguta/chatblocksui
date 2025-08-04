@@ -6,10 +6,9 @@ import {
   CodeBlock,
   CodeBlockCode,
   CodeBlockGroup,
-} from '@/components/preview/code-block';
+} from '@/components/chatblocks/code-block';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
-import { useTheme } from '@/lib/use-theme';
 
 interface ComponentPreviewSourceProps {
   files: { name: string; content: string }[];
@@ -17,8 +16,6 @@ interface ComponentPreviewSourceProps {
 
 export function ComponentPreviewSource({ files }: ComponentPreviewSourceProps) {
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
-  const theme = useTheme();
-  const codeTheme = theme === 'dark' ? 'github-dark' : 'github-light';
 
   const handleCopy = (name: string, content: string) => {
     navigator.clipboard.writeText(content);
@@ -40,7 +37,7 @@ export function ComponentPreviewSource({ files }: ComponentPreviewSourceProps) {
         {files.map(({ name, content }) => (
           <TabsContent className="h-[calc(100%-40px)]" key={name} value={name}>
             <CodeBlock className="h-full rounded-none border-0">
-              <CodeBlockGroup className="border-border border-b bg-muted/20 py-2 pr-2 pl-4">
+              <CodeBlockGroup className="py-2 pr-2 pl-4">
                 <span className="text-muted-foreground text-xs">
                   @/components/ui/{name}.tsx
                 </span>
@@ -61,7 +58,6 @@ export function ComponentPreviewSource({ files }: ComponentPreviewSourceProps) {
                 className="min-h-full"
                 code={content}
                 language="tsx"
-                theme={codeTheme}
               />
             </CodeBlock>
           </TabsContent>
