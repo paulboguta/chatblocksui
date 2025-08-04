@@ -4,9 +4,9 @@ import { Check, Copy } from 'lucide-react';
 import { useState } from 'react';
 import {
   CodeBlock,
-  CodeBlockCode,
-  CodeBlockGroup,
-} from '@/components/preview/code-block';
+  CodeBlockContent,
+  CodeBlockHeader,
+} from '@/components/chatblocks/code-block';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { useTheme } from '@/lib/use-theme';
@@ -40,7 +40,7 @@ export function ComponentPreviewSource({ files }: ComponentPreviewSourceProps) {
         {files.map(({ name, content }) => (
           <TabsContent className="h-[calc(100%-40px)]" key={name} value={name}>
             <CodeBlock className="h-full rounded-none border-0">
-              <CodeBlockGroup className="border-border border-b bg-muted/20 py-2 pr-2 pl-4">
+              <CodeBlockHeader className="py-2 pr-2 pl-4">
                 <span className="text-muted-foreground text-xs">
                   @/components/ui/{name}.tsx
                 </span>
@@ -56,8 +56,8 @@ export function ComponentPreviewSource({ files }: ComponentPreviewSourceProps) {
                     <Copy className="h-4 w-4" />
                   )}
                 </Button>
-              </CodeBlockGroup>
-              <CodeBlockCode
+              </CodeBlockHeader>
+              <CodeBlockContent
                 className="min-h-full"
                 code={content}
                 language="tsx"
