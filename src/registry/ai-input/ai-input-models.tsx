@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import {
-  AiInput,
-  AiInputField,
-  AiInputModelSelector,
-  AiInputSubmit,
-  AiInputToolbar,
-  AiInputToolbarLeft,
-  AiInputToolbarRight,
+  AIInput,
+  AIInputField,
+  AIInputModelSelector,
+  AIInputSubmit,
+  AIInputToolbar,
+  AIInputToolbarLeft,
+  AIInputToolbarRight,
 } from '@/components/chatblocks/ai-input';
 
 const models = [
@@ -20,7 +20,7 @@ const models = [
   { label: 'Grok 4', value: 'grok-4' },
 ];
 
-export default function AiInputModelsDemo() {
+export default function AIInputModelsDemo() {
   const [value, setValue] = useState('');
   const [selectedModel, setSelectedModel] = useState('claude-4.1-nano');
 
@@ -33,24 +33,24 @@ export default function AiInputModelsDemo() {
   };
 
   return (
-    <AiInput onSubmit={handleSubmit}>
-      <AiInputField
+    <AIInput onSubmit={handleSubmit}>
+      <AIInputField
         onChange={(e) => setValue(e.target.value)}
         placeholder="Ask anything"
         value={value}
       />
-      <AiInputToolbar>
-        <AiInputToolbarLeft>
-          <AiInputModelSelector
+      <AIInputToolbar>
+        <AIInputToolbarLeft>
+          <AIInputModelSelector
             models={models}
             onValueChange={setSelectedModel}
             value={selectedModel}
           />
-        </AiInputToolbarLeft>
-        <AiInputToolbarRight>
-          <AiInputSubmit />
-        </AiInputToolbarRight>
-      </AiInputToolbar>
-    </AiInput>
+        </AIInputToolbarLeft>
+        <AIInputToolbarRight>
+          <AIInputSubmit />
+        </AIInputToolbarRight>
+      </AIInputToolbar>
+    </AIInput>
   );
 }

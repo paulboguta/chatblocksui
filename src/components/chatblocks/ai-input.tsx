@@ -13,7 +13,7 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 
-function AiInput({
+function AIInput({
   className,
   ...props
 }: React.FormHTMLAttributes<HTMLFormElement>) {
@@ -28,16 +28,16 @@ function AiInput({
   );
 }
 
-interface AiInputFieldProps extends React.ComponentProps<typeof Textarea> {
+interface AIInputFieldProps extends React.ComponentProps<typeof Textarea> {
   onSubmit?: () => void;
 }
 
-function AiInputField({
+function AIInputField({
   className,
   onSubmit,
   onKeyDown,
   ...props
-}: AiInputFieldProps) {
+}: AIInputFieldProps) {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -59,7 +59,7 @@ function AiInputField({
   );
 }
 
-function AiInputToolbar({
+function AIInputToolbar({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
@@ -71,7 +71,7 @@ function AiInputToolbar({
   );
 }
 
-function AiInputToolbarLeft({
+function AIInputToolbarLeft({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
@@ -80,7 +80,7 @@ function AiInputToolbarLeft({
   );
 }
 
-function AiInputToolbarRight({
+function AIInputToolbarRight({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
@@ -92,16 +92,16 @@ function AiInputToolbarRight({
   );
 }
 
-interface AiInputSubmitProps extends React.ComponentProps<typeof Button> {
+interface AIInputSubmitProps extends React.ComponentProps<typeof Button> {
   icon?: React.ReactNode;
 }
 
-function AiInputSubmit({
+function AIInputSubmit({
   className,
   icon,
   children,
   ...props
-}: AiInputSubmitProps) {
+}: AIInputSubmitProps) {
   return (
     <Button
       className={cn(
@@ -117,7 +117,7 @@ function AiInputSubmit({
   );
 }
 
-interface AiInputModelSelectorProps {
+interface AIInputModelSelectorProps {
   value?: string;
   onValueChange?: (value: string) => void;
   models?: Array<{ label: string; value: string }>;
@@ -125,13 +125,13 @@ interface AiInputModelSelectorProps {
   className?: string;
 }
 
-function AiInputModelSelector({
+function AIInputModelSelector({
   value,
   onValueChange,
   models = [],
   placeholder = 'Select model',
   className,
-}: AiInputModelSelectorProps) {
+}: AIInputModelSelectorProps) {
   return (
     <Select onValueChange={onValueChange} value={value}>
       <SelectTrigger
@@ -154,16 +154,16 @@ function AiInputModelSelector({
 }
 
 export {
-  AiInput,
-  AiInputField,
-  AiInputToolbar,
-  AiInputToolbarLeft,
-  AiInputToolbarRight,
-  AiInputSubmit,
-  AiInputModelSelector,
+  AIInput,
+  AIInputField,
+  AIInputToolbar,
+  AIInputToolbarLeft,
+  AIInputToolbarRight,
+  AIInputSubmit,
+  AIInputModelSelector,
 };
 export type {
-  AiInputFieldProps,
-  AiInputSubmitProps,
-  AiInputModelSelectorProps,
+  AIInputFieldProps,
+  AIInputSubmitProps,
+  AIInputModelSelectorProps,
 };

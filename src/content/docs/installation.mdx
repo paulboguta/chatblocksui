@@ -32,14 +32,14 @@ After installation, import and start using the components in your project:
 
 import { useState } from 'react';
 import {
-  AiInput,
-  AiInputField,
-  AiInputSubmit,
-  AiInputToolbar,
-  AiInputToolbarRight,
+  AIInput,
+  AIInputField,
+  AIInputSubmit,
+  AIInputToolbar,
+  AIInputToolbarRight,
 } from '@/components/chatblocks/ai-input';
 
-export default function SuperCoolChatApp() {
+export default function AIInputDemo() {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -51,21 +51,20 @@ export default function SuperCoolChatApp() {
   };
 
   return (
-    <AiInput onSubmit={handleSubmit}>
-      <AiInputField
+    <AIInput onSubmit={handleSubmit}>
+      <AIInputField
         onChange={(e) => setValue(e.target.value)}
         placeholder="Ask anything"
         value={value}
       />
-      <AiInputToolbar>
-        <AiInputToolbarRight>
-          <AiInputSubmit />
-        </AiInputToolbarRight>
-      </AiInputToolbar>
-    </AiInput>
+      <AIInputToolbar>
+        <AIInputToolbarRight>
+          <AIInputSubmit />
+        </AIInputToolbarRight>
+      </AIInputToolbar>
+    </AIInput>
   );
 }
-
 ```
 
 ## Manual Installation

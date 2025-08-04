@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 import {
-  AiInput,
-  AiInputField,
-  AiInputSubmit,
-  AiInputToolbar,
-  AiInputToolbarRight,
+  AIInput,
+  AIInputField,
+  AIInputSubmit,
+  AIInputToolbar,
+  AIInputToolbarRight,
 } from '@/components/chatblocks/ai-input';
 
-export default function AiInputDemo() {
+export default function AIInputDemo() {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,17 +21,17 @@ export default function AiInputDemo() {
   };
 
   return (
-    <AiInput onSubmit={handleSubmit}>
-      <AiInputField
+    <AIInput onSubmit={handleSubmit}>
+      <AIInputField
         onChange={(e) => setValue(e.target.value)}
         placeholder="Ask anything"
         value={value}
       />
-      <AiInputToolbar>
-        <AiInputToolbarRight>
-          <AiInputSubmit />
-        </AiInputToolbarRight>
-      </AiInputToolbar>
-    </AiInput>
+      <AIInputToolbar>
+        <AIInputToolbarRight>
+          <AIInputSubmit />
+        </AIInputToolbarRight>
+      </AIInputToolbar>
+    </AIInput>
   );
 }
