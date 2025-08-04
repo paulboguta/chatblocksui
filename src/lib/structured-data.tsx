@@ -50,7 +50,7 @@ export function StructuredData({
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: title,
-    description: description,
+    description,
     url: pageUrl,
     author: {
       '@type': 'Organization',
@@ -63,7 +63,7 @@ export function StructuredData({
     dateModified: new Date().toISOString(),
   };
 
-  let schema;
+  let schema: Record<string, unknown>;
   switch (type) {
     case 'software':
       schema = softwareSchema;
@@ -77,8 +77,8 @@ export function StructuredData({
 
   return (
     <script
-      type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      type="application/ld+json"
     />
   );
 }
