@@ -9,7 +9,6 @@ Before installing, ensure you have the following:
 
 - [**Node.js**](https://nodejs.org/) version 18 or later
 - [**React**](https://react.dev/) version 19 or later
-- A [**Next.js**](https://nextjs.org/), [**Vite**](https://vitejs.dev/), or [**Remix**](https://remix.run/) project
 
 ## Install shadcn/ui
 
@@ -24,36 +23,52 @@ Install individual components using the shadcn CLI:
 ```bash
 npx shadcn@latest add https://chatblocks.dev/r/ai-input.json
 ```
-
-You can also use other package managers:
-
-```bash
-# Using pnpm
-pnpm dlx shadcn@latest add https://chatblocks.dev/r/ai-input.json
-
-# Using yarn
-yarn dlx shadcn@latest add https://chatblocks.dev/r/ai-input.json
-
-# Using bun
-bunx shadcn@latest add https://chatblocks.dev/r/ai-input.json
-```
-
 ### Usage
 
 After installation, import and start using the components in your project:
 
 ```tsx
-import { AiInput } from "@/components/ui/ai-input";
+'use client';
 
-export default function MyPage() {
+import { useState } from 'react';
+import {
+  AIInput,
+  AIInputField,
+  AIInputSubmit,
+  AIInputToolbar,
+  AIInputToolbarRight,
+} from '@/components/chatblocks/ai-input';
+
+export default function AIInputDemo() {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (value.trim()) {
+      // Handle sending the message to the AI Provider
+      setValue('');
+    }
+  };
+
   return (
-    <div>
-      <AiInput placeholder="Ask me anything..." />
-    </div>
+    <AIInput onSubmit={handleSubmit}>
+      <AIInputField
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Ask anything"
+        value={value}
+      />
+      <AIInputToolbar>
+        <AIInputToolbarRight>
+          <AIInputSubmit />
+        </AIInputToolbarRight>
+      </AIInputToolbar>
+    </AIInput>
   );
 }
 ```
 
 ## Manual Installation
 
-You can also manually copy and paste components from our documentation if you prefer not to use the CLI.
+You can also manually copy and paste components from our documentation if you prefer not to use the CLI. 
+
+All component source code is also available on [GitHub](https://github.com/paulboguta/chatblocksui).

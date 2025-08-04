@@ -17,17 +17,22 @@ export async function ComponentPreview({
   className,
   display = 'default',
 }: ComponentPreviewProps) {
-  const exampleCode = await readFile(
-    join(process.cwd(), 'src', 'registry', name, `${name}-demo.tsx`),
-    'utf-8'
-  );
+  // Extract component base name and variant (e.g., "ai-input" and "basic" from "ai-input-basic")
+  const parts = name.split('-');
+  const baseComponent = parts.slice(0, 2).join('-'); // "ai-input"
+  const variant = parts.slice(2).join('-') || 'demo'; // "basic" or default to "demo"
+  
+  const fileName = variant === 'demo' ? `${name}.tsx` : `${name}.tsx`;
+  const filePath = join(process.cwd(), 'src', 'registry', baseComponent, fileName);
+  
+  const exampleCode = await readFile(filePath, 'utf-8');
 
   const Component = await import(
-    `../../registry/${name}/${name}-demo.tsx`
+    `../../registry/${baseComponent}/${fileName}`
   ).then((mod) => mod.default);
 
   const transformedCode = exampleCode.replace(
-    /@\/components\//g,
+    /@\/components\/chatblocks\//g,
     '@/components/ui/'
   );
 

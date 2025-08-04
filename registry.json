@@ -10,7 +10,7 @@
       "description": "A simple AI input component.",
       "files": [
         {
-          "path": "src/registry/ai-input/ai-input.tsx",
+          "path": "src/components/chatblocks/ai-input.tsx",
           "type": "registry:component",
           "target": "components/ui/ai-input.tsx"
         },

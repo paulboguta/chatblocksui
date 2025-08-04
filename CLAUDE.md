@@ -19,12 +19,10 @@ chatblocks is a UI component library specifically designed for AI chat applicati
 chatblocksui/
 ├── src/
 │   ├── content/               # Documentation content (MDX)
-│   ├── registry/              # Registry components for publishing
+│   ├── registry/              # Registry demos for publishing
 │   │   ├── ai-input/
-│   │   │   ├── ai-input.tsx               # Primitive component
 │   │   │   └── ai-input-demo.tsx          # Basic demo
 │   │   └── [component-name]/
-│   │       ├── [component-name].tsx       # Primitive
 │   │       └── [component-name]-demo.tsx  # Demo
 │   ├── app/                   # Next.js app router
 │   │   ├── (home)/            # Home page
@@ -32,6 +30,9 @@ chatblocksui/
 │   │   └── api/               # API routes
 │   ├── lib/                   # Utility functions
 │   └── components/
+│       ├── chatblocks/        # chatblocks primitive components
+│       │   ├── ai-input.tsx  # AI input primitive component
+│       │   └── [component].tsx # Other primitives
 │       ├── ui/                # Shadcn components (installed via CLI)
 │       └── preview/           # Existing preview components (keep as-is)
 ├── biome.jsonc                # Biome configuration
@@ -71,9 +72,12 @@ pnpm registry:build   # Build registry JSON files (shadcn build)
 ## Registry Architecture
 
 ### Component Structure
-- **Registry Components**: `src/registry/[component]/`
-  - `[component].tsx` - Primitive component with multiple exports + types (shadcn style)
-  - `[component]-demo.tsx` - Basic demo showing component usage
+- **Primitive Components**: `src/components/chatblocks/[component].tsx`
+  - Contains all component exports and types (shadcn style)
+  - Stateless, composable components
+- **Registry Demos**: `src/registry/[component]/[component]-demo.tsx`
+  - Basic demo showing component usage
+  - Stateful examples
 
 ### Installation Flow
 When users run: `npx shadcn@latest add chatblocksui/ai-input`
@@ -81,6 +85,7 @@ When users run: `npx shadcn@latest add chatblocksui/ai-input`
 - Demo goes to: `components/ai-input-demo.tsx`
 
 ### Internal Development
+- `src/components/chatblocks/` - chatblocks primitive components
 - `src/components/ui/` - Shadcn components we install for building our library
 - `src/components/preview/` - Existing preview components (navigation, preview tabs, etc.)
 
@@ -100,21 +105,23 @@ Documentation is built with Fumadocs and lives in the `src/content/docs/` direct
 
 ### Registry JSON Structure
 Based on shadcn CLI requirements:
-- Registry items live in `src/registry/[component]/`
+- Primitive components live in `src/components/chatblocks/`
+- Demo components live in `src/registry/[component]/`
 - Each component needs entry in `registry.json`
 - Files are built to `public/r/` via `pnpm registry:build`
 - Served at `http://localhost:3000/r/[component].json`
 
 ### Component Requirements
-- Use `@/registry` imports in registry components
+- Use `@/components/chatblocks` imports in demo components
 - List shadcn dependencies in `registryDependencies`
 - List npm packages in `dependencies`
-- Follow `src/registry/[component]` directory structure
+- Follow the separated primitive/demo structure
 
 ## Notes for AI Assistants
 - Always check existing shadcn/ui patterns before creating new components
 - Follow the established code style (Biome with ultracite preset)
-- Registry components go in `src/registry/[component]/`
+- Primitive components go in `src/components/chatblocks/`
+- Registry demos go in `src/registry/[component]/`
 - Internal app components go in `src/components/preview/`
 - Advanced examples go in `src/content/docs/components/`
 - Use Tailwind CSS v4 syntax
