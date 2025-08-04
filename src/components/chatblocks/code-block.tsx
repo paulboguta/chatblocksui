@@ -1,105 +1,113 @@
 'use client';
 
+import { useTheme } from 'next-themes';
 import * as React from 'react';
 import { codeToHtml } from 'shiki';
 import { cn } from '@/lib/utils';
 
-interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {}
+// Main container component for code blocks
+export interface CodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+}
 
-function CodeBlock({ className, children, ...props }: CodeBlockProps) {
+export function CodeBlock({
+  className,
+  children,
+  ...restProps
+}: CodeBlockProps) {
   return (
-    <div
+    <article
+      aria-label="Code block"
       className={cn(
-        'relative w-full rounded-lg border bg-background text-foreground',
-        'overflow-hidden shadow-sm',
+        'not-prose relative flex w-full flex-col overflow-hidden',
+        'rounded-xl border border-border',
+        'bg-card text-card-foreground shadow-xs',
         className
       )}
-      {...props}
+      {...restProps}
     >
       {children}
-    </div>
+    </article>
   );
 }
 
-interface CodeBlockHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-function CodeBlockHeader({ className, children, ...props }: CodeBlockHeaderProps) {
-  return (
-    <div
-      className={cn(
-        'flex items-center justify-between border-b bg-muted/30 px-4 py-2',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
-
-interface CodeBlockContentProps extends React.HTMLAttributes<HTMLDivElement> {
+// Syntax highlighted code renderer
+export interface CodeBlockCodeProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   code: string;
   language?: string;
-  theme?: 'github-light' | 'github-dark';
 }
 
-function CodeBlockContent({
+export function CodeBlockCode({
   code,
   language = 'typescript',
-  theme = 'github-light',
   className,
-  ...props
-}: CodeBlockContentProps) {
-  const [syntaxHTML, setSyntaxHTML] = React.useState<string>('');
+  ...restProps
+}: CodeBlockCodeProps) {
+  const [renderedCode, setRenderedCode] = React.useState<string>('');
   const [isLoading, setIsLoading] = React.useState(true);
+  const { resolvedTheme } = useTheme();
+
+  const syntaxTheme = React.useMemo(
+    () => (resolvedTheme === 'dark' ? 'vesper' : 'github-light'),
+    [resolvedTheme]
+  );
 
   React.useEffect(() => {
-    let mounted = true;
+    let isCancelled = false;
 
-    async function generateSyntaxHighlight() {
-      if (!code.trim()) {
-        setSyntaxHTML('');
-        setIsLoading(false);
-        return;
-      }
+    // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: acceptable here
+    const renderSyntaxHighlight = async () => {
+      setIsLoading(true);
 
       try {
-        const highlighted = await codeToHtml(code, {
-          lang: language,
-          theme: theme,
-        });
-        
-        if (mounted) {
-          setSyntaxHTML(highlighted);
-          setIsLoading(false);
+        if (!code?.trim()) {
+          setRenderedCode('<pre class="empty-code"><code></code></pre>');
+          return;
         }
-      } catch (error) {
-        if (mounted) {
-          setSyntaxHTML(`<pre><code>${code}</code></pre>`);
+
+        const highlighted = await codeToHtml(code, {
+          lang: language || 'text',
+          theme: syntaxTheme,
+        });
+
+        if (!isCancelled) {
+          setRenderedCode(highlighted);
+        }
+      } catch {
+        if (!isCancelled) {
+          setRenderedCode(
+            `<pre><code class="language-${language}">${escapeHtml(code)}</code></pre>`
+          );
+        }
+      } finally {
+        if (!isCancelled) {
           setIsLoading(false);
         }
       }
-    }
+    };
 
-    generateSyntaxHighlight();
+    renderSyntaxHighlight();
 
     return () => {
-      mounted = false;
+      isCancelled = true;
     };
-  }, [code, language, theme]);
+  }, [code, language, syntaxTheme]);
 
-  if (isLoading || !syntaxHTML) {
+  const containerStyles = cn(
+    'w-full overflow-x-auto',
+    'text-[13px] leading-relaxed',
+    '[&>pre]:px-4 [&>pre]:py-3.5 [&>pre]:pb-6',
+    '[&>pre]:m-0',
+    '[&_code]:font-mono',
+    className
+  );
+
+  if (isLoading && code) {
     return (
-      <div
-        className={cn(
-          'overflow-x-auto p-4 text-sm font-mono',
-          'bg-muted/20 text-muted-foreground',
-          className
-        )}
-        {...props}
-      >
-        <pre>
-          <code>{code}</code>
+      <div className={containerStyles} {...restProps}>
+        <pre className="animate-pulse">
+          <code className="opacity-60">{code}</code>
         </pre>
       </div>
     );
@@ -107,17 +115,49 @@ function CodeBlockContent({
 
   return (
     <div
-      className={cn(
-        'overflow-x-auto text-sm',
-        '[&>pre]:m-0 [&>pre]:p-4 [&>pre]:bg-transparent',
-        '[&>pre]:border-0',
-        className
-      )}
-      dangerouslySetInnerHTML={{ __html: syntaxHTML }}
-      {...props}
+      className={containerStyles}
+      dangerouslySetInnerHTML={{ __html: renderedCode }}
+      data-language={language}
+      {...restProps}
     />
   );
 }
 
-export { CodeBlock, CodeBlockHeader, CodeBlockContent };
-export type { CodeBlockProps, CodeBlockHeaderProps, CodeBlockContentProps };
+// Toolbar
+export interface CodeBlockGroupProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+}
+
+export function CodeBlockGroup({
+  children,
+  className,
+  ...restProps
+}: CodeBlockGroupProps) {
+  return (
+    <header
+      className={cn(
+        'flex items-center justify-between',
+        'border-border/50 border-b',
+        'px-4 py-2',
+        className
+      )}
+      {...restProps}
+    >
+      {children}
+    </header>
+  );
+}
+
+// Helper function to escape HTML
+function escapeHtml(text: string): string {
+  const htmlEntities: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  return text.replace(/[&<>"']/g, (match) => htmlEntities[match]);
+}
