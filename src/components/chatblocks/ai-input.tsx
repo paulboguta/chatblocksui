@@ -20,7 +20,7 @@ function AIInput({
   return (
     <form
       className={cn(
-        'relative flex flex-col overflow-hidden rounded-3xl border bg-background shadow-xs transition-colors focus-within:border-ring/30',
+        'relative flex w-full max-w-3xl flex-col overflow-hidden rounded-3xl border bg-background shadow-xs transition-colors focus-within:border-ring/30',
         className
       )}
       {...props}
