@@ -1,6 +1,10 @@
 {
   "permissions": {
-    "allow": ["Bash(mv:*)", "Bash(pnpm registry:build:*)"],
+    "allow": [
+      "Bash(mv:*)",
+      "Bash(pnpm registry:build:*)",
+      "Bash(npx shadcn@canary add:*)"
+    ],
     "deny": []
   }
 }

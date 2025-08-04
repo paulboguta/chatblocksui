@@ -6,7 +6,6 @@ import {
   AiInputField,
   AiInputSubmit,
   AiInputToolbar,
-  AiInputToolbarLeft,
   AiInputToolbarRight,
 } from '@/components/chatblocks/ai-input';
 
@@ -29,9 +28,6 @@ export default function AiInputDemo() {
         value={value}
       />
       <AiInputToolbar>
-        <AiInputToolbarLeft>
-          {/* Add tools here like attach, voice, etc */}
-        </AiInputToolbarLeft>
         <AiInputToolbarRight>
           <AiInputSubmit />
         </AiInputToolbarRight>

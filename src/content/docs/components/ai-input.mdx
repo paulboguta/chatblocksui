@@ -3,16 +3,26 @@ title: AI Input
 description: Displays a text input with a button to send messages to an AI.
 ---
 
-import { ComponentDocs } from '@/components/preview/component-docs';
+import { ComponentExample} from '@/components/preview/example';
+import { ComponentInstallation } from '@/components/preview/installation';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 
-<ComponentDocs 
-  name="ai-input"
-  packageName="example"
-  cliDependencies={[]}
-  manualDependencies={[]}
-  examples={[]}
-/>
+## Examples
+### Basic Usage
+
+A simple AI input with just a text field and submit button.
+
+<ComponentExample name="ai-input-basic" />
+
+### With Model Selector
+
+AI input with a model selector in the left toolbar for choosing different AI models.
+
+<ComponentExample name="ai-input-models" />
+
+## Installation
+
+<ComponentInstallation name="ai-input" />
 
 ## API Reference
 

@@ -4,19 +4,30 @@ import { useState } from 'react';
 import {
   AiInput,
   AiInputField,
+  AiInputModelSelector,
   AiInputSubmit,
   AiInputToolbar,
   AiInputToolbarLeft,
   AiInputToolbarRight,
 } from '@/components/chatblocks/ai-input';
 
-export default function AiInputDemo() {
+const models = [
+  { label: 'Claude 4.1 Nano', value: 'claude-4.1-nano' },
+  { label: 'Claude Sonnet 4', value: 'claude-sonnet-4' },
+  { label: 'Claude Opus 4', value: 'claude-opus-4' },
+  { label: 'GPT-4.5', value: 'gpt-4.5' },
+  { label: 'Gemini 2.5 Pro', value: 'gemini-2.5-pro' },
+  { label: 'Grok 4', value: 'grok-4' },
+];
+
+export default function AiInputModelsDemo() {
   const [value, setValue] = useState('');
+  const [selectedModel, setSelectedModel] = useState('claude-4.1-nano');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (value.trim()) {
-      // Handle sending the message to the AI Provider
+      // Handle sending the message to the AI Provider with selected model
       setValue('');
     }
   };
@@ -30,7 +41,11 @@ export default function AiInputDemo() {
       />
       <AiInputToolbar>
         <AiInputToolbarLeft>
-          {/* Add tools here like attach, voice, etc */}
+          <AiInputModelSelector
+            models={models}
+            onValueChange={setSelectedModel}
+            value={selectedModel}
+          />
         </AiInputToolbarLeft>
         <AiInputToolbarRight>
           <AiInputSubmit />
