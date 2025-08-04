@@ -4,9 +4,8 @@
   "files": {
     "includes": [
       "**/*",
-      "!packages/shadcn-ui/components/ui/**",
-      "!packages/shadcn-ui/lib/**",
-      "!packages/shadcn-ui/hooks/**"
+      "!src/components/ui/**",
+      "!src/app/global.css"
     ]
   },
   "linter": {
@@ -14,6 +13,12 @@
     "rules": {
       "performance": {
         "noNamespaceImport": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
       },
       "recommended": true
     }
