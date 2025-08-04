@@ -7,17 +7,47 @@
       "name": "ai-input",
       "type": "registry:block",
       "title": "AI Input",
-      "description": "A simple AI input component.",
+      "description": "A comprehensive AI input component with model selector and submit handling.",
       "files": [
         {
           "path": "src/components/chatblocks/ai-input.tsx",
           "type": "registry:component",
-          "target": "components/ui/ai-input.tsx"
-        },
+          "target": "components/chatblocks/ai-input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "markdown",
+      "type": "registry:block",
+      "title": "Markdown",
+      "description": "A markdown rendering component for AI chat applications with syntax highlighting.",
+      "dependencies": [
+        "react-markdown"
+      ],
+      "registryDependencies": [
+        "code-block"
+      ],
+      "files": [
         {
-          "path": "src/registry/ai-input/ai-input-demo.tsx",
+          "path": "src/components/chatblocks/markdown.tsx",
           "type": "registry:component",
-          "target": "components/ai-input-demo.tsx"
+          "target": "components/chatblocks/markdown.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block",
+      "type": "registry:block",
+      "title": "Code Block",
+      "description": "A syntax highlighted code block component with Shiki for AI-generated code.",
+      "dependencies": [
+        "shiki"
+      ],
+      "files": [
+        {
+          "path": "src/components/chatblocks/code-block.tsx",
+          "type": "registry:component",
+          "target": "components/chatblocks/code-block.tsx"
         }
       ]
     }

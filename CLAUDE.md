@@ -60,6 +60,8 @@ pnpm registry:build   # Build registry JSON files (shadcn build)
 
 ## Component Library Goals
 - Create specialized AI chat components extending shadcn/ui
+- **Distribution Strategy**: Export only primitive components via registry
+- **Demo Strategy**: Provide interactive demos and examples in documentation
 - Components to include:
   - AI-friendly input components
   - Chat message displays
@@ -81,8 +83,8 @@ pnpm registry:build   # Build registry JSON files (shadcn build)
 
 ### Installation Flow
 When users run: `npx shadcn@latest add chatblocksui/ai-input`
-- Primitive goes to: `components/ui/ai-input.tsx`
-- Demo goes to: `components/ai-input-demo.tsx`
+- Only the primitive component is installed to: `components/chatblocks/ai-input.tsx`
+- Demo code is available in documentation and source code for reference
 
 ### Internal Development
 - `src/components/chatblocks/` - chatblocks primitive components
@@ -105,17 +107,18 @@ Documentation is built with Fumadocs and lives in the `src/content/docs/` direct
 
 ### Registry JSON Structure
 Based on shadcn CLI requirements:
+- Only primitive components are distributed via registry
 - Primitive components live in `src/components/chatblocks/`
-- Demo components live in `src/registry/[component]/`
+- Demo components live in `src/registry/[component]/` for documentation only
 - Each component needs entry in `registry.json`
 - Files are built to `public/r/` via `pnpm registry:build`
 - Served at `http://localhost:3000/r/[component].json`
 
 ### Component Requirements
-- Use `@/components/chatblocks` imports in demo components
+- Users import from `@/components/chatblocks` after installation
 - List shadcn dependencies in `registryDependencies`
 - List npm packages in `dependencies`
-- Follow the separated primitive/demo structure
+- Demos are for documentation/reference only, not distributed
 
 ## Notes for AI Assistants
 - Always check existing shadcn/ui patterns before creating new components
