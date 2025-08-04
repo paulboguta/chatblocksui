@@ -5,51 +5,78 @@
   "items": [
     {
       "name": "ai-input",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "AI Input",
       "description": "A comprehensive AI input component with model selector and submit handling.",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [
+        "textarea",
+        "select",
+        "button"
+      ],
       "files": [
         {
           "path": "src/components/chatblocks/ai-input.tsx",
           "type": "registry:component",
           "target": "components/chatblocks/ai-input.tsx"
         }
+      ],
+      "categories": [
+        "ai",
+        "chatblocks"
       ]
     },
     {
       "name": "markdown",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "Markdown",
       "description": "A markdown rendering component for AI chat applications with syntax highlighting.",
       "dependencies": [
-        "marked"
+        "marked",
+        "shiki",
+        "next-themes"
       ],
-      "registryDependencies": [
-        "code-block"
-      ],
+      "devDependencies": [],
+      "registryDependencies": [],
       "files": [
         {
           "path": "src/components/chatblocks/markdown.tsx",
           "type": "registry:component",
           "target": "components/chatblocks/markdown.tsx"
+        },
+        {
+          "path": "src/components/chatblocks/code-block.tsx",
+          "type": "registry:component",
+          "target": "components/chatblocks/code-block.tsx"
         }
+      ],
+      "categories": [
+        "ai",
+        "chatblocks"
       ]
     },
     {
       "name": "code-block",
-      "type": "registry:block",
+      "type": "registry:ui",
       "title": "Code Block",
       "description": "A syntax highlighted code block component with Shiki for AI-generated code.",
       "dependencies": [
         "shiki",
         "next-themes"
       ],
+      "devDependencies": [],
+      "registryDependencies": [],
       "files": [
         {
           "path": "src/components/chatblocks/code-block.tsx",
           "type": "registry:component",
           "target": "components/chatblocks/code-block.tsx"
         }
+      ],
+      "categories": [
+        "ai",
+        "chatblocks"
       ]
     }
   ]

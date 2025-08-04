@@ -1,12 +1,15 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "code-block",
-  "type": "registry:block",
+  "type": "registry:ui",
   "title": "Code Block",
   "description": "A syntax highlighted code block component with Shiki for AI-generated code.",
   "dependencies": [
-    "shiki"
+    "shiki",
+    "next-themes"
   ],
+  "devDependencies": [],
+  "registryDependencies": [],
   "files": [
     {
       "path": "src/components/chatblocks/code-block.tsx",
@@ -14,5 +17,9 @@
       "type": "registry:component",
       "target": "components/chatblocks/code-block.tsx"
     }
+  ],
+  "categories": [
+    "ai",
+    "chatblocks"
   ]
 }

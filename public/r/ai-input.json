@@ -1,9 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "ai-input",
-  "type": "registry:block",
+  "type": "registry:ui",
   "title": "AI Input",
   "description": "A comprehensive AI input component with model selector and submit handling.",
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "textarea",
+    "select",
+    "button"
+  ],
   "files": [
     {
       "path": "src/components/chatblocks/ai-input.tsx",
@@ -11,5 +18,9 @@
       "type": "registry:component",
       "target": "components/chatblocks/ai-input.tsx"
     }
+  ],
+  "categories": [
+    "ai",
+    "chatblocks"
   ]
 }
