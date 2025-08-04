@@ -9,7 +9,6 @@ import {
 } from '@/components/chatblocks/code-block';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
-import { useTheme } from '@/lib/use-theme';
 
 interface ComponentPreviewSourceProps {
   files: { name: string; content: string }[];
@@ -17,8 +16,6 @@ interface ComponentPreviewSourceProps {
 
 export function ComponentPreviewSource({ files }: ComponentPreviewSourceProps) {
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
-  const theme = useTheme();
-  const codeTheme = theme === 'dark' ? 'github-dark' : 'github-light';
 
   const handleCopy = (name: string, content: string) => {
     navigator.clipboard.writeText(content);
@@ -61,7 +58,6 @@ export function ComponentPreviewSource({ files }: ComponentPreviewSourceProps) {
                 className="min-h-full"
                 code={content}
                 language="tsx"
-                theme={codeTheme}
               />
             </CodeBlock>
           </TabsContent>

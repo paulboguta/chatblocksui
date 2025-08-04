@@ -50,7 +50,6 @@ export async function ComponentPreview({
         <div
             className={cn(
               'overflow-hidden rounded-lg border',
-              display === 'fullscreen' ? 'h-[48rem]' : 'h-[32rem]'
             )}
           >
             <ComponentPreviewDisplay display={display}>

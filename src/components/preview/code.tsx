@@ -9,7 +9,6 @@ import {
 } from '@/components/chatblocks/code-block';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useTheme } from '@/lib/use-theme';
 
 interface CodeFile {
   filename: string;
@@ -27,8 +26,6 @@ export function ComponentPreviewCode({
   filename = 'demo.tsx',
 }: ComponentPreviewCodeProps) {
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
-  const theme = useTheme();
-  const codeTheme = theme === 'dark' ? 'github-dark' : 'github-light';
 
   // Convert single code string to files array for backwards compatibility
   const codeFiles: CodeFile[] =
@@ -36,9 +33,9 @@ export function ComponentPreviewCode({
       ? [{ filename, code: files, language: 'tsx' }]
       : files;
 
-  const handleCopy = (filename: string, code: string) => {
+  const handleCopy = (text: string, code: string) => {
     navigator.clipboard.writeText(code);
-    setCopiedFile(filename);
+    setCopiedFile(text);
     setTimeout(() => setCopiedFile(null), 2000);
   };
 
@@ -68,7 +65,6 @@ export function ComponentPreviewCode({
             className="min-h-full"
             code={file.code}
             language={file.language || 'tsx'}
-            theme={codeTheme}
           />
         </CodeBlock>
       </div>
@@ -120,7 +116,6 @@ export function ComponentPreviewCode({
                 className="min-h-full"
                 code={file.code}
                 language={file.language || 'tsx'}
-                theme={codeTheme}
               />
             </CodeBlock>
           </TabsContent>
