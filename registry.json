@@ -22,7 +22,7 @@
       "title": "Markdown",
       "description": "A markdown rendering component for AI chat applications with syntax highlighting.",
       "dependencies": [
-        "react-markdown"
+        "marked"
       ],
       "registryDependencies": [
         "code-block"
@@ -41,7 +41,8 @@
       "title": "Code Block",
       "description": "A syntax highlighted code block component with Shiki for AI-generated code.",
       "dependencies": [
-        "shiki"
+        "shiki",
+        "next-themes"
       ],
       "files": [
         {
